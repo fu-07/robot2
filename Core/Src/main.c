@@ -42,7 +42,7 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
 /* 比赛参数定义 */
-#define TARGET_STEPS 5        // 走完900mm需要的步态循环次数（先写60，实测后调整）
+#define TARGET_STEPS 60        // 走完900mm需要的步态循环次数（先写60，实测后调整）
 #define STEP_DELAY 500         // 单步步态之间的延时（毫秒）
 
 /* 全局变量 */
