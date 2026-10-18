@@ -1,0 +1,19 @@
+# Keil MDK
+*.o
+*.d
+*.crf
+*.axf
+*.hex
+*.elf
+*.map
+*.dep
+*.bak
+*.lst
+Debug/
+Release/
+
+# STM32CubeMX
+.mxproject/
+
+# VSCode
+.vscode/
