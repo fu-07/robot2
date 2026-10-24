@@ -1,8 +1,27 @@
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2026 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  ******************************************************************************
+  */
+/* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
 #include "string.h"
 #include "OLED.h"
 #include "bluetooth.h"
@@ -11,7 +30,7 @@
 #include "motion.h"
 
 /* Private define ------------------------------------------------------------*/
-#define TARGET_STEPS 95        // 走完900mm需要的步态循环次数（实测后修改）
+#define TARGET_STEPS 140        // 走完900mm需要的步态循环次数（实测后修改）
 #define STEP_DELAY 50         // 单步步态之间的延时（毫秒）
 
 /* 全局变量 */
@@ -50,9 +69,9 @@ void Robot_Stand(void) {
     SetServo(5, 90.0f); 
     SetServo(7, 90.0f);
     
-    // 膝关节稍微弯曲（注意左右镜像，数值可能相反，比如左边75右边105）
-    SetServo(2, 75.0f); SetServo(8, 105.0f); 
-    SetServo(4, 94.f); SetServo(6, 78.0f); 
+    // 膝关节稍微弯曲
+    SetServo(2, 76.0f); SetServo(8, 105.0f); 
+    SetServo(4, 95.f); SetServo(6, 75.0f); 
 }
 
 
@@ -61,23 +80,22 @@ void Robot_Walk_Forward_Step(void) {
     
     switch(stepPhase) {
         case 0: 
-            // 第一步：左前(1)和右后(7)往前划，右前(3)和左后(5)往后推。
-            // 绝对对称，绝不产生侧翻扭矩！
-            SetServo(1, 60.0f);  // 左前
-            SetServo(7, 120.0f); // 右后（镜像安装，所以角度是反向的）
-            SetServo(3, 120.0f); // 右前
-            SetServo(5, 60.0f);  // 左后
-            HAL_Delay(150);      // 给摩擦力发挥作用的时间
+            // 【修正右偏】：左侧步子收小（65/115），右侧步子拉大（55/125）
+            SetServo(1, 55.0f);  // 左前（步子稍小）
+            SetServo(7, 120.0f); // 右后（步子极大，猛推）
+            SetServo(3, 117.0f); // 右前（大步后蹬）
+            SetServo(5, 65.0f);  // 左后（步子稍小）
+            HAL_Delay(200);      
             stepPhase = 1; 
             break;
             
         case 1: 
-            // 第二步：交换方向，右前(3)和左后(5)往前，左前(1)和右后(7)往后。
-            SetServo(3, 60.0f);  // 右前
-            SetServo(5, 120.0f); // 左后
-            SetServo(1, 120.0f); // 左前
-            SetServo(7, 60.0f);  // 右后
-            HAL_Delay(150);      
+            // 第二拍：继续保持右大左小的差速
+            SetServo(3, 55.0f);  // 右前（步子极大，猛拉）
+            SetServo(5, 125.0f); // 左后（步子稍小）
+            SetServo(1, 125.0f); // 左前（步子稍小）
+            SetServo(7, 80.0f);  // 右后（步子极大，猛拉）
+            HAL_Delay(200);      
             stepPhase = 0; 
             break;
     }
@@ -97,7 +115,7 @@ void BT_Process(void) {
             Robot_Stand();
         }
         else if(bt_recv_char == '2') { // 单步微调
-            micro_step_request = 1;
+            micro_step_request = 5;
         }
     }
 }
