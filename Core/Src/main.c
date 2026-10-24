@@ -30,7 +30,7 @@
 #include "motion.h"
 
 /* Private define ------------------------------------------------------------*/
-#define TARGET_STEPS 140        // 走完900mm需要的步态循环次数（实测后修改）
+#define TARGET_STEPS 140       // 走完900mm需要的步态循环次数（实测后修改）
 #define STEP_DELAY 50         // 单步步态之间的延时（毫秒）
 
 /* 全局变量 */
