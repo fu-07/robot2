@@ -543,3 +543,4 @@ void OLED_Init(void)
     OLED_Clear();
     OLED_WR_Byte(0xAF,OLED_CMD);
 }
+

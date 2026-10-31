@@ -75,5 +75,6 @@ void OLED_ScrollDisplay(u8 num,u8 space,u8 mode);
 void OLED_ShowPicture(u8 x,u8 y,u8 sizex,u8 sizey,const unsigned char BMP[],u8 mode);
 void OLED_Init(void);
 
+
 #endif
 
