@@ -1,19 +1,43 @@
-# Keil MDK
+# ---------------- Keil MDK ----------------
+# 用户界面状态（每台机器不同）
+*.uvguix.*
+*.uvguix
+# 编译中间产物
+Objects/
+Listings/
+DebugConfig/
+RTE/
+MDK-ARM/robot/
 *.o
 *.d
 *.crf
 *.axf
-*.hex
 *.elf
+*.hex
+*.bin
 *.map
-*.dep
-*.bak
 *.lst
-Debug/
-Release/
+*.lnp
+*.dep
+*.htm
+*.build_log.htm
+*.iex
+*.sct
+*.bak
+*.tmp
+*.log
+# 事件记录器生成文件
+*.scvd
 
-# STM32CubeMX
-.mxproject/
-
-# VSCode
+# ---------------- 编辑器 / 系统 ----------------
 .vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------------- 其它 ----------------
+*.zip
+*.rar
+*.7z
+~$*

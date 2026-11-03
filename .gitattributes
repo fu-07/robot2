@@ -1,0 +1,32 @@
+# 默认按文本处理，仓库内换行统一为 LF
+* text=auto eol=lf
+
+# 源码
+*.c    text
+*.h    text
+*.s    text
+*.ioc  text
+
+# 二进制：不做 diff / 不做换行转换
+*.stl  binary
+*.GTL  binary
+*.GBL  binary
+*.GTO  binary
+*.GBO  binary
+*.GTS  binary
+*.GBS  binary
+*.GKO  binary
+*.GDL  binary
+*.GDD  binary
+*.DRL  binary
+*.xlsx binary
+*.pdf  binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.webp binary
+
+# Gerber 与 STL 不参与 GitHub 语言统计
+*.GTL  linguist-detectable=false
+*.GBL  linguist-detectable=false
+*.stl  linguist-detectable=false
