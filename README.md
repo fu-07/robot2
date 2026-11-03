@@ -9,12 +9,12 @@
 <img alt="HAL" src="https://img.shields.io/badge/Driver-STM32%20HAL-orange">
 <img alt="License" src="https://img.shields.io/badge/License-MIT-yellow">
 </p>
-
+[![Release](https://img.shields.io/github/v/release/fu-07/robot2?label=release&color=green)](https://github.com/fu-07/robot2/releases/latest) [![PCB](https://img.shields.io/badge/PCB-Gerber-blue)](https://github.com/fu-07/robot2/releases/latest)
 ---
 
 ## 项目简介
 
-一台**纯开环步态 + 蓝牙微调**的低成本四足机器人。没有 IMU、没有视觉，靠「8 相位错峰步态 + 赛前标定 + 人工单步补偿」完成直行与精准停靠。
+一台**纯开环步态 + 蓝牙微调**的低成本四足机器人，没有 IMU、没有视觉，靠「8 相位错峰步态 + 赛前标定 + 人工单步补偿」完成直行与精准停靠。
 
 **核心设计**
 
